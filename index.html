@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حملة التواصل التجاري - جمعية سفراء التعليمية</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#1a5c3a;--primary-light:#27835c;--gold:#c9a84c;--gold-light:#dfc16a;--bg:#f7f3eb;--card-bg:#fff;--text:#1e2a3a;--text-light:#5a6a7a;--border:#e0d8cc;--radius:14px;--radius-sm:8px}
+body{font-family:'Noto Naskh Arabic','Traditional Arabic',serif;background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh}
+.top-bar{background:linear-gradient(135deg,#0d3b24,#1a5c3a);color:#fff;padding:10px;text-align:center;font-size:14px;border-bottom:3px solid var(--gold);font-family:'Noto Kufi Arabic',sans-serif}
+.top-bar i{margin-left:8px;color:var(--gold-light)}
+header{background:linear-gradient(135deg,#1e3a2a,#2a5a3a);color:#fff;padding:30px 0 20px;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%,rgba(201,168,76,0.05)0,transparent 60%)}
+.header-content{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 20px}
+.logo-section{display:flex;align-items:center;gap:18px}
+.logo-icon{font-size:48px;color:var(--gold);text-shadow:0 2px 10px rgba(201,168,76,.3)}
+h1{font-family:'Noto Kufi Arabic',sans-serif;font-size:26px;font-weight:800}
+.subtitle{font-size:14px;color:rgba(255,255,255,.75);margin-top:4px}
+.header-stats{display:flex;gap:20px;background:rgba(255,255,255,.08);padding:10px 20px;border-radius:50px;backdrop-filter:blur(10px)}
+.header-stats span{display:flex;align-items:center;gap:6px;font-size:14px;font-family:'Noto Kufi Arabic',sans-serif}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+.action-bar{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:25px 0;flex-wrap:wrap}
+.search-box{display:flex;align-items:center;background:#fff;border:2px solid #e8e0d4;border-radius:50px;padding:0 18px;flex:1;min-width:220px;transition:border-color .3s}
+.search-box:focus-within{border-color:var(--gold)}
+.search-box i{color:#999;font-size:15px}
+.search-box input{border:none;outline:none;padding:12px;font-size:15px;background:transparent;width:100%;font-family:'Noto Naskh Arabic',serif}
+.filter-btns{display:flex;gap:6px;flex-wrap:wrap}
+.filter-btn{padding:8px 18px;border:2px solid var(--border);background:#fff;border-radius:50px;cursor:pointer;font-size:13px;font-family:'Noto Kufi Arabic',sans-serif;transition:all .2s;color:var(--text-light)}
+.filter-btn:hover{border-color:var(--gold);color:var(--text)}
+.filter-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+#shopsContainer{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;padding-bottom:20px}
+.shop-card{background:var(--card-bg);border-radius:var(--radius);box-shadow:0 2px 16px rgba(0,0,0,.06);overflow:hidden;border:1px solid var(--border);transition:transform .2s,box-shadow .2s}
+.shop-card:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.08)}
+.shop-header{background:linear-gradient(135deg,#1a5c3a,#27835c);color:#fff;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.shop-number{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(255,255,255,.15);border-radius:50%;font-size:13px;font-weight:700;font-family:'Noto Kufi Arabic',sans-serif;flex-shrink:0}
+.shop-name{font-size:17px;font-weight:700;font-family:'Noto Kufi Arabic',sans-serif;flex:1;word-break:break-word}
+.shop-type-badge{font-size:11px;background:rgba(255,255,255,.15);padding:3px 12px;border-radius:50px;white-space:nowrap;font-family:'Noto Kufi Arabic',sans-serif}
+.shop-body{padding:14px 18px}
+.shop-phone{display:flex;align-items:center;gap:8px;direction:ltr;text-align:left;font-size:15px;color:var(--text);margin-bottom:12px;font-family:'Courier New',monospace;letter-spacing:1px;unicode-bidi:plaintext}
+.shop-phone i{color:var(--primary-light);font-size:14px;flex-shrink:0}
+.shop-actions{display:flex;gap:8px;flex-wrap:wrap}
+.shop-actions a,.shop-actions button{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 14px;border-radius:var(--radius-sm);font-size:13px;font-family:'Noto Kufi Arabic',sans-serif;cursor:pointer;text-decoration:none;border:none;transition:all .2s;flex:1;min-width:70px}
+.btn-whatsapp{background:#25D366;color:#fff!important}
+.btn-whatsapp:hover{background:#1da851}
+.btn-map{background:#4285F4;color:#fff!important}
+.btn-map:hover{background:#3367d6}
+.btn-note{background:#f0ebe3;color:var(--text);border:1px solid var(--border)!important}
+.btn-note:hover{background:#e5ddd3}
+.shop-status{display:flex;gap:10px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.status-item{display:flex;align-items:center;gap:6px;cursor:pointer;padding:6px 12px;border-radius:var(--radius-sm);transition:all .2s;font-size:13px;font-family:'Noto Kufi Arabic',sans-serif;border:1px solid transparent;user-select:none;flex:1;justify-content:center}
+.status-item:hover{background:#f5f0e8}
+.status-item.active-sent{background:#d4edda;border-color:#27ae60;color:#1e7e34}
+.status-item.active-contacted{background:#cce5ff;border-color:#2980b9;color:#1a5276}
+.status-item input[type="checkbox"]{width:18px;height:18px;accent-color:var(--primary);cursor:pointer}
+.notes-display{margin-top:10px;padding:8px 12px;background:#fdfaf5;border-radius:var(--radius-sm);border-right:3px solid var(--gold);font-size:13px;color:var(--text-light);display:none;word-wrap:break-word}
+.notes-display.has-note{display:block}
+.notes-display i{color:var(--gold);margin-left:4px}
+.notes-display .note-delete{float:left;cursor:pointer;color:#e74c3c;font-size:12px;opacity:.6}
+.notes-display .note-delete:hover{opacity:1}
+.modal-overlay{display:none;position:fixed;z-index:9999;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);align-items:center;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal{background:#fff;border-radius:var(--radius);width:90%;max-width:500px;box-shadow:0 20px 60px rgba(0,0,0,.2);overflow:hidden}
+.modal-header{background:linear-gradient(135deg,#1a5c3a,#27835c);color:#fff;padding:20px}
+.modal-header h3{font-family:'Noto Kufi Arabic',sans-serif;font-size:18px}
+.modal-subtitle{font-size:13px;opacity:.8;margin-top:4px;display:block}
+.modal textarea{width:100%;min-height:180px;border:none;padding:20px;font-size:15px;font-family:'Noto Naskh Arabic',serif;resize:vertical;outline:none;line-height:1.8}
+.modal-actions{display:flex;gap:10px;padding:15px 20px;border-top:1px solid var(--border);justify-content:flex-end}
+.btn-cancel,.btn-save{padding:10px 28px;border-radius:var(--radius-sm);font-size:14px;font-family:'Noto Kufi Arabic',sans-serif;cursor:pointer;border:none;transition:all .2s}
+.btn-cancel{background:#f0ebe3;color:var(--text)}
+.btn-cancel:hover{background:#e5ddd3}
+.btn-save{background:var(--primary);color:#fff}
+.btn-save:hover{background:var(--primary-light)}
+.btn-save i{margin-left:6px}
+.reset-btn{padding:12px 30px;border:2px solid #e74c3c;background:transparent;color:#e74c3c;border-radius:50px;font-size:14px;font-family:'Noto Kufi Arabic',sans-serif;cursor:pointer;transition:all .3s}
+.reset-btn:hover{background:#e74c3c;color:#fff}.reset-btn i{margin-left:6px}
+.loading{text-align:center;padding:60px 20px;font-size:18px;color:var(--text-light);grid-column:1/-1}
+footer{background:#1e2a3a;color:rgba(255,255,255,.8);padding:30px 0;margin-top:30px}
+.footer-content{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;max-width:1200px;margin:0 auto;padding:0 20px}
+.footer-info{display:flex;align-items:center;gap:14px}
+.footer-info i{font-size:36px;color:var(--gold)}
+.footer-info strong{font-family:'Noto Kufi Arabic',sans-serif;font-size:16px;color:#fff}
+.footer-info p{font-size:13px;opacity:.7}
+.footer-message{background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);padding:10px 22px;border-radius:50px;font-size:14px;color:var(--gold-light)}
+@media(max-width:768px){
+  h1{font-size:20px}.header-content{flex-direction:column;align-items:flex-start}
+  .header-stats{padding:8px 14px;gap:12px;font-size:12px;align-self:flex-start}
+  #shopsContainer{grid-template-columns:1fr}.action-bar{flex-direction:column}
+  .search-box{width:100%}.filter-btns{width:100%;justify-content:center}
+  .shop-actions a,.shop-actions button{font-size:12px;padding:7px 10px}
+  .shop-status{flex-direction:column;gap:6px}
+  .footer-content{flex-direction:column;text-align:center}.footer-info{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar"><i class="fas fa-hands-helping"></i> جمعية سفراء التعليمية - برامج تعليم الأيتام والقرآن الكريم</div>
+
+<header>
+  <div class="header-content">
+    <div class="logo-section">
+      <i class="fas fa-mosque logo-icon"></i>
+      <div>
+        <h1>قائمة محلات طريق الإمام البخاري</h1>
+        <p class="subtitle">المدينة المنورة - حي العزيزية - للتواصل ودعم برامج جمعية سفراء التعليمية</p>
+      </div>
+    </div>
+    <div class="header-stats" id="stats">
+      <span><i class="fas fa-store"></i> <span id="totalCount">0</span> محل</span>
+      <span><i class="fas fa-check-circle" style="color:#27ae60"></i> <span id="sentCount">0</span></span>
+      <span><i class="fas fa-phone-alt" style="color:#2980b9"></i> <span id="contactedCount">0</span></span>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="action-bar">
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="ابحث عن محل..." oninput="render()">
+    </div>
+    <div class="filter-btns">
+      <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">الكل</button>
+      <button class="filter-btn" data-filter="pending" onclick="setFilter('pending',this)">معلق</button>
+      <button class="filter-btn" data-filter="sent" onclick="setFilter('sent',this)">تم الإرسال</button>
+      <button class="filter-btn" data-filter="contacted" onclick="setFilter('contacted',this)">تم التواصل</button>
+    </div>
+  </div>
+</div>
+
+<main class="container" id="shopsContainer">
+  <div class="loading"><i class="fas fa-spinner fa-spin"></i> جاري التحميل...</div>
+</main>
+
+<div class="container" style="text-align:center;padding:20px 0 40px">
+  <button class="reset-btn" onclick="resetAll()"><i class="fas fa-redo"></i> إعادة تعيين الكل</button>
+</div>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-info">
+      <i class="fas fa-mosque"></i>
+      <div>
+        <strong>جمعية سفراء التعليمية</strong>
+        <p>برامج تعليم الأيتام | تحفيظ القرآن الكريم | الدورات التعليمية</p>
+      </div>
+    </div>
+    <div class="footer-message">
+      <p>نسألكم الدعم المادي أو الخصم التجاري لدعم برامجنا</p>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="noteModal" onclick="if(event.target===this)closeNoteModal()">
+  <div class="modal">
+    <div class="modal-header">
+      <h3><i class="fas fa-sticky-note"></i> ملاحظات</h3>
+      <span class="modal-subtitle" id="noteModalShop"></span>
+    </div>
+    <textarea id="noteText" placeholder="أكتب ملاحظاتك هنا..."></textarea>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeNoteModal()">إلغاء</button>
+      <button class="btn-save" onclick="saveNote()"><i class="fas fa-save"></i> حفظ</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ========== بيانات المحلات ==========
+const SHOPS = [
+  {id:1,name:"تونتي 4",type:"ملابس",phone:"+966561163943",lat:24.4572,lng:39.5847},
+  {id:2,name:"السيف غاليري",type:"أدوات منزلية",phone:"+966594193712",lat:24.4568,lng:39.5850},
+  {id:3,name:"رد تاغ",type:"ملابس",phone:"+9668003043113",lat:24.4565,lng:39.5853},
+  {id:4,name:"توفير المدينة",type:"مستلزمات منزلية",phone:"+966500459595",lat:24.4560,lng:39.5858},
+  {id:5,name:"التويجري للمستلزمات الرجالية",type:"ملابس رجالية",phone:"+966148411101",lat:24.4555,lng:39.5862},
+  {id:6,name:"بُن الحربي",type:"قهوة وتمور",phone:"+966148302100",lat:24.4550,lng:39.5867},
+  {id:7,name:"قصر الأواني",type:"أواني منزلية",phone:"+966552226958",lat:24.4545,lng:39.5871},
+  {id:8,name:"عبد الصمد القرشي",type:"عطور",phone:"+966148300017",lat:24.4540,lng:39.5876},
+  {id:9,name:"حلويات جنان",type:"حلويات",phone:"+966148303299",lat:24.4535,lng:39.5880},
+  {id:10,name:"عطارة الحكمة",type:"عطارة",phone:"+966558110105",lat:24.4580,lng:39.5840},
+  {id:11,name:"العربية للاتصالات",type:"إلكترونيات",phone:"+966567668050",lat:24.4585,lng:39.5835},
+  {id:12,name:"مطاعم المعلم لورق العنب",type:"مطعم",phone:"+966507662042",lat:24.4590,lng:39.5830},
+  {id:13,name:"مطعم المعلم البخاري",type:"مطعم",phone:"+966551923100",lat:24.4595,lng:39.5825},
+  {id:14,name:"عصير صمدو",type:"عصائر",phone:"+966501809029",lat:24.4600,lng:39.5820},
+  {id:15,name:"باريس بارفيوم",type:"عطور",phone:"+966545797495",lat:24.4605,lng:39.5815},
+  {id:16,name:"مطعم الفردوس البخاري",type:"مطعم",phone:"+966531373908",lat:24.4610,lng:39.5810},
+  {id:17,name:"اوت لت جمالك",type:"عناية",phone:"+966567562840",lat:24.4615,lng:39.5805},
+  {id:18,name:"ماكس - Max",type:"ملابس",phone:"+9668001111629",lat:24.4620,lng:39.5800},
+  {id:19,name:"مجمع الثقات الطبي",type:"مجمع طبي",phone:"+966148320099",lat:24.4625,lng:39.5795},
+  {id:20,name:"مطابخ الألمنيوم اليسر",type:"مطابخ",phone:"+966555928451",lat:24.4630,lng:39.5790},
+  {id:21,name:"حلويات الذوق الرفيع",type:"حلويات",phone:"+966581936907",lat:24.4635,lng:39.5785},
+  {id:22,name:"صيدلية زهرة حنين",type:"صيدلية",phone:"+966148590558",lat:24.4640,lng:39.5780},
+  {id:23,name:"سمايا للزهور",type:"زهور",phone:"+966566358899",lat:24.4645,lng:39.5775},
+  {id:24,name:"مطعم بيت البخاري",type:"مطعم",phone:"+966551234567",lat:24.4650,lng:39.5770},
+  {id:25,name:"مطعم هايل",type:"مطعم",phone:"+966557958988",lat:24.4655,lng:39.5765},
+  {id:26,name:"مطعم ريف العرب",type:"مطعم",phone:"+966920001411",lat:24.4660,lng:39.5760},
+  {id:27,name:"مطعم النور الشامي",type:"مطعم",phone:"+966551319564",lat:24.4665,lng:39.5755},
+  {id:28,name:"البيك العزيزية",type:"مطعم",phone:"+966920000125",lat:24.4670,lng:39.5750},
+  {id:29,name:"مخابز صحاري",type:"مخابز",phone:"+966555127167",lat:24.4675,lng:39.5745},
+  {id:30,name:"مركز ومخبز سما العزيزية",type:"سوبر ماركت",phone:"+966507302907",lat:24.4680,lng:39.5740},
+  {id:31,name:"المغامسي للأواني المنزلية",type:"أدوات منزلية",phone:"+966540742050",lat:24.4685,lng:39.5735},
+  {id:32,name:"الردادي للاتصالات",type:"اتصالات",phone:"+966567668051",lat:24.4690,lng:39.5730},
+  {id:33,name:"محل الأطفال",type:"ملابس أطفال",phone:"+966561163944",lat:24.4695,lng:39.5725},
+  {id:34,name:"سيتي روز - City Rose",type:"عطور",phone:"+966581234567",lat:24.4700,lng:39.5720},
+  {id:35,name:"الرصاصي للعطور",type:"عطور",phone:"+966581234568",lat:24.4705,lng:39.5715},
+  {id:36,name:"ذا بودي شوب",type:"عناية",phone:"+966581234569",lat:24.4710,lng:39.5710},
+  {id:37,name:"أجمل للعطور",type:"عطور",phone:"+966581234570",lat:24.4715,lng:39.5705},
+  {id:38,name:"دهن العود",type:"عطور",phone:"+966581234571",lat:24.4720,lng:39.5700},
+  {id:39,name:"شاورمتي",type:"مطعم",phone:"+966581234572",lat:24.4725,lng:39.5695},
+  {id:40,name:"مطاعم الشيخ فهد",type:"مطعم",phone:"+966581234573",lat:24.4730,lng:39.5690},
+  {id:41,name:"بقالة رائد",type:"بقالة",phone:"+966581234574",lat:24.4735,lng:39.5685},
+  {id:42,name:"خليه خالد",type:"مأكولات",phone:"+966581234575",lat:24.4740,lng:39.5680},
+  {id:43,name:"مفروشات أفكار منزلنا",type:"مفروشات",phone:"+966581234576",lat:24.4745,lng:39.5675},
+  {id:44,name:"الراقي للمفروشات",type:"مفروشات",phone:"+966581234577",lat:24.4750,lng:39.5670},
+  {id:45,name:"لؤلؤة المنى للمستلزمات الطبية",type:"مستلزمات طبية",phone:"+966581234578",lat:24.4755,lng:39.5665},
+  {id:46,name:"صيدلية دان المدينة",type:"صيدلية",phone:"+966581234579",lat:24.4760,lng:39.5660},
+  {id:47,name:"مكتبة خلف",type:"قرطاسية",phone:"+966581234580",lat:24.4765,lng:39.5655},
+  {id:48,name:"حلويات روز",type:"حلويات",phone:"+966581234581",lat:24.4770,lng:39.5650},
+  {id:49,name:"لاريسا للحلويات",type:"حلويات",phone:"+966581234582",lat:24.4775,lng:39.5645},
+  {id:50,name:"وقت السكاكر",type:"حلويات",phone:"+966581234583",lat:24.4780,lng:39.5640}
+];
+
+// ========== إدارة التخزين المحلي ==========
+const STORAGE_KEY = 'bukhari_shops_data';
+const NOTES_KEY = 'bukhari_shops_notes';
+
+function loadData() {
+  try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch(e){return{}}
+}
+function saveData(data){localStorage.setItem(STORAGE_KEY,JSON.stringify(data))}
+function loadNotes(){try{return JSON.parse(localStorage.getItem(NOTES_KEY))||{}}catch(e){return{}}}
+function saveNotes(notes){localStorage.setItem(NOTES_KEY,JSON.stringify(notes))}
+
+function getStatus(id){const d=loadData();return d[id]||'pending'}
+function setStatus(id,s){const d=loadData();d[id]=s;saveData(d)}
+
+function getNote(id){const n=loadNotes();return n[id]||''}
+function setNote(id,txt){const n=loadNotes();n[id]=txt;saveNotes(n)}
+
+let currentFilter = 'all';
+let currentNoteShopId = null;
+
+// ========== الرسالة ==========
+const WA_MSG = `السلام عليكم ورحمة الله وبركاته
+
+نحن فريق جمعية سفراء التعليمية، جمعية خيرية متخصصة في:
+• تعليم الأيتام ورعايتهم
+• تحفيظ القرآن الكريم
+• الدورات التعليمية المجانية
+
+نأمل منكم دعمنا بـ:
+• تبرع مادي لدعم برامجنا
+• خصم تجاري للمستفيدين
+• دعم ورعاية الأيتام المسجلين لدينا
+
+للاستفسار: يمكنكم التواصل معنا
+نسأل الله أن يبارك فيكم وفي أرزاقكم
+مع جزيل الشكر والتقدير`;
+
+// ========== التصيير ==========
+function render() {
+  const container = document.getElementById('shopsContainer');
+  const term = document.getElementById('searchInput').value.trim();
+
+  let filtered = SHOPS;
+  if (currentFilter !== 'all') filtered = filtered.filter(s => getStatus(s.id) === currentFilter);
+  if (term) filtered = filtered.filter(s => s.name.includes(term) || s.type.includes(term) || s.phone.includes(term));
+
+  if (!filtered.length) {
+    container.innerHTML = '<div class="loading">لا توجد محلات متطابقة</div>';
+    updateStats();
+    return;
+  }
+
+  const notes = loadNotes();
+  let html = '';
+  filtered.forEach(shop => {
+    const num = SHOPS.findIndex(s => s.id === shop.id) + 1;
+    const status = getStatus(shop.id);
+    const isSent = status === 'sent' || status === 'contacted';
+    const isContacted = status === 'contacted';
+    const note = notes[shop.id] || '';
+    const waUrl = `https://wa.me/${shop.phone.replace(/[^0-9]/g,'')}?text=${encodeURIComponent(WA_MSG)}`;
+    const mapUrl = `https://www.google.com/maps?q=${shop.lat},${shop.lng}`;
+
+    html += `<div class="shop-card">
+      <div class="shop-header">
+        <span class="shop-number">${num}</span>
+        <span class="shop-name">${shop.name}</span>
+        <span class="shop-type-badge">${shop.type}</span>
+      </div>
+      <div class="shop-body">
+        <div class="shop-phone"><i class="fas fa-phone-alt"></i><span>${shop.phone}</span></div>
+        <div class="shop-actions">
+          <a class="btn-whatsapp" href="${waUrl}" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> واتساب</a>
+          <a class="btn-map" href="${mapUrl}" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt"></i> خريطة</a>
+          <button class="btn-note" onclick="openNoteModal(${shop.id})"><i class="fas fa-sticky-note"></i> ملاحظة</button>
+        </div>
+        <div class="shop-status">
+          <label class="status-item ${isSent?'active-sent':''}">
+            <input type="checkbox" ${isSent?'checked':''} onchange="updateStatus(${shop.id},'sent',this.checked)">
+            <i class="fas fa-check-circle"></i><span>تم الإرسال</span>
+          </label>
+          <label class="status-item ${isContacted?'active-contacted':''}">
+            <input type="checkbox" ${isContacted?'checked':''} onchange="updateStatus(${shop.id},'contacted',this.checked)">
+            <i class="fas fa-phone-alt"></i><span>تم التواصل</span>
+          </label>
+        </div>
+        <div class="notes-display ${note?'has-note':''}" id="noteDisplay_${shop.id}">
+          <i class="fas fa-quote-right"></i>
+          <span id="noteText_${shop.id}">${note}</span>
+          <span class="note-delete" onclick="deleteNote(${shop.id})" title="حذف الملاحظة"><i class="fas fa-times"></i></span>
+        </div>
+      </div>
+    </div>`;
+  });
+  container.innerHTML = html;
+  updateStats();
+}
+
+function updateStats() {
+  const all = SHOPS.length;
+  let sent = 0, contacted = 0;
+  SHOPS.forEach(s => {
+    const st = getStatus(s.id);
+    if (st === 'sent' || st === 'contacted') sent++;
+    if (st === 'contacted') contacted++;
+  });
+  document.getElementById('totalCount').textContent = all;
+  document.getElementById('sentCount').textContent = sent;
+  document.getElementById('contactedCount').textContent = contacted;
+}
+
+function setFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function updateStatus(id, type, checked) {
+  const cur = getStatus(id);
+  let newStatus;
+  if (type === 'sent') {
+    newStatus = checked ? (cur === 'contacted' ? 'contacted' : 'sent') : (cur === 'contacted' ? 'contacted' : 'pending');
+  } else {
+    newStatus = checked ? 'contacted' : (cur === 'sent' ? 'sent' : 'pending');
+  }
+  setStatus(id, newStatus);
+  render();
+}
+
+function openNoteModal(id) {
+  currentNoteShopId = id;
+  const shop = SHOPS.find(s => s.id === id);
+  document.getElementById('noteModalShop').textContent = '📌 ' + (shop ? shop.name : '');
+  document.getElementById('noteText').value = getNote(id);
+  document.getElementById('noteModal').classList.add('show');
+}
+
+function closeNoteModal() {
+  document.getElementById('noteModal').classList.remove('show');
+  currentNoteShopId = null;
+}
+
+function saveNote() {
+  if (!currentNoteShopId) return;
+  setNote(currentNoteShopId, document.getElementById('noteText').value);
+  closeNoteModal();
+  render();
+}
+
+function deleteNote(id) {
+  if (!confirm('هل تريد حذف هذه الملاحظة؟')) return;
+  setNote(id, '');
+  render();
+}
+
+function resetAll() {
+  if (!confirm('هل أنت متأكد من إعادة تعيين جميع البيانات؟')) return;
+  if (!confirm('سيتم مسح جميع الحالات والملاحظات. هل تريد المتابعة؟')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(NOTES_KEY);
+  render();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNoteModal(); });
+document.addEventListener('DOMContentLoaded', render);
+</script>
+</body>
+</html>
