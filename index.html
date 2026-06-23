@@ -31,6 +31,9 @@ h1{font-family:'Noto Kufi Arabic',sans-serif;font-size:26px;font-weight:800}
 .filter-btn{padding:8px 18px;border:2px solid var(--border);background:#fff;border-radius:50px;cursor:pointer;font-size:13px;font-family:'Noto Kufi Arabic',sans-serif;transition:all .2s;color:var(--text-light)}
 .filter-btn:hover{border-color:var(--gold);color:var(--text)}
 .filter-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.edit-msg-btn{padding:8px 18px;border:2px solid var(--gold);background:#fff;border-radius:50px;cursor:pointer;font-size:13px;font-family:'Noto Kufi Arabic',sans-serif;transition:all .2s;color:var(--text);white-space:nowrap;display:flex;align-items:center;gap:5px}
+.edit-msg-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+.edit-msg-btn i{font-size:12px}
 #shopsContainer{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;padding-bottom:20px}
 .shop-card{background:var(--card-bg);border-radius:var(--radius);box-shadow:0 2px 16px rgba(0,0,0,.06);overflow:hidden;border:1px solid var(--border);transition:transform .2s,box-shadow .2s}
 .shop-card:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.08)}
@@ -89,6 +92,7 @@ footer{background:#1e2a3a;color:rgba(255,255,255,.8);padding:30px 0;margin-top:3
   .header-stats{padding:8px 14px;gap:12px;font-size:12px;align-self:flex-start}
   #shopsContainer{grid-template-columns:1fr}.action-bar{flex-direction:column}
   .search-box{width:100%}.filter-btns{width:100%;justify-content:center}
+  .edit-msg-btn{width:100%;justify-content:center}
   .shop-actions a,.shop-actions button{font-size:12px;padding:7px 10px}
   .shop-status{flex-direction:column;gap:6px}
   .footer-content{flex-direction:column;text-align:center}.footer-info{flex-direction:column}
@@ -128,6 +132,7 @@ footer{background:#1e2a3a;color:rgba(255,255,255,.8);padding:30px 0;margin-top:3
       <button class="filter-btn" data-filter="sent" onclick="setFilter('sent',this)">تم الإرسال</button>
       <button class="filter-btn" data-filter="contacted" onclick="setFilter('contacted',this)">تم التواصل</button>
     </div>
+    <button class="edit-msg-btn" onclick="openMsgModal()"><i class="fas fa-edit"></i> تعديل الرسالة</button>
   </div>
 </div>
 
@@ -164,6 +169,20 @@ footer{background:#1e2a3a;color:rgba(255,255,255,.8);padding:30px 0;margin-top:3
     <div class="modal-actions">
       <button class="btn-cancel" onclick="closeNoteModal()">إلغاء</button>
       <button class="btn-save" onclick="saveNote()"><i class="fas fa-save"></i> حفظ</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="msgModal" onclick="if(event.target===this)closeMsgModal()">
+  <div class="modal">
+    <div class="modal-header">
+      <h3><i class="fab fa-whatsapp"></i> تعديل نص رسالة واتساب</h3>
+      <span class="modal-subtitle">هذا النص سيرسل عند الضغط على زر واتساب لأي محل</span>
+    </div>
+    <textarea id="msgText" placeholder="اكتب نص الرسالة..."></textarea>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeMsgModal()">إلغاء</button>
+      <button class="btn-save" onclick="saveMsg()"><i class="fas fa-save"></i> حفظ</button>
     </div>
   </div>
 </div>
@@ -226,6 +245,25 @@ const SHOPS = [
 // ========== إدارة التخزين المحلي ==========
 const STORAGE_KEY = 'bukhari_shops_data';
 const NOTES_KEY = 'bukhari_shops_notes';
+const MSG_KEY = 'bukhari_wa_msg';
+
+const DEFAULT_MSG = `السلام عليكم ورحمة الله وبركاته
+
+نحن جمعية سفراء التعليمية بالمدينة المنورة، جمعية خيرية تعنى بـ:
+• تعليم الأيتام ورعايتهم
+• تحفيظ القرآن الكريم
+• الدورات التعليمية المجانية
+
+نتشرف بالتواصل معكم ونأمل منكم تزويدنا برقم جوال المالك أو المسؤول للتواصل معه بخصوص:
+• دعم مادي لبرامجنا الخيرية
+• دعم عيني أو خصم تجاري للمستفيدين
+• رعاية الأيتام المسجلين لدينا
+
+نأمل منكم التعاون بدعم أنشطتنا التعليمية والخيرية
+للاستفسار: يمكنكم التواصل معنا
+
+نسأل الله أن يبارك فيكم وفي أرزاقكم
+مع جزيل الشكر والتقدير`;
 
 function loadData() {
   try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch(e){return{}}
@@ -233,6 +271,8 @@ function loadData() {
 function saveData(data){localStorage.setItem(STORAGE_KEY,JSON.stringify(data))}
 function loadNotes(){try{return JSON.parse(localStorage.getItem(NOTES_KEY))||{}}catch(e){return{}}}
 function saveNotes(notes){localStorage.setItem(NOTES_KEY,JSON.stringify(notes))}
+function loadMsg(){try{var m=localStorage.getItem(MSG_KEY);return m||DEFAULT_MSG}catch(e){return DEFAULT_MSG}}
+function saveMsgText(t){localStorage.setItem(MSG_KEY,t)}
 
 function getStatus(id){const d=loadData();return d[id]||'pending'}
 function setStatus(id,s){const d=loadData();d[id]=s;saveData(d)}
@@ -242,23 +282,7 @@ function setNote(id,txt){const n=loadNotes();n[id]=txt;saveNotes(n)}
 
 let currentFilter = 'all';
 let currentNoteShopId = null;
-
-// ========== الرسالة ==========
-const WA_MSG = `السلام عليكم ورحمة الله وبركاته
-
-نحن فريق جمعية سفراء التعليمية، جمعية خيرية متخصصة في:
-• تعليم الأيتام ورعايتهم
-• تحفيظ القرآن الكريم
-• الدورات التعليمية المجانية
-
-نأمل منكم دعمنا بـ:
-• تبرع مادي لدعم برامجنا
-• خصم تجاري للمستفيدين
-• دعم ورعاية الأيتام المسجلين لدينا
-
-للاستفسار: يمكنكم التواصل معنا
-نسأل الله أن يبارك فيكم وفي أرزاقكم
-مع جزيل الشكر والتقدير`;
+let currentMsgEdit = false;
 
 // ========== التصيير ==========
 function render() {
@@ -283,7 +307,7 @@ function render() {
     const isSent = status === 'sent' || status === 'contacted';
     const isContacted = status === 'contacted';
     const note = notes[shop.id] || '';
-    const waUrl = `https://wa.me/${shop.phone.replace(/[^0-9]/g,'')}?text=${encodeURIComponent(WA_MSG)}`;
+    const waUrl = `https://wa.me/${shop.phone.replace(/[^0-9]/g,'')}?text=${encodeURIComponent(loadMsg())}`;
     const mapUrl = `https://www.google.com/maps?q=${shop.lat},${shop.lng}`;
 
     html += `<div class="shop-card">
@@ -379,11 +403,24 @@ function deleteNote(id) {
   render();
 }
 
+function openMsgModal() {
+  document.getElementById('msgText').value = loadMsg();
+  document.getElementById('msgModal').classList.add('show');
+}
+function closeMsgModal() {
+  document.getElementById('msgModal').classList.remove('show');
+}
+function saveMsg() {
+  saveMsgText(document.getElementById('msgText').value);
+  closeMsgModal();
+}
+
 function resetAll() {
   if (!confirm('هل أنت متأكد من إعادة تعيين جميع البيانات؟')) return;
   if (!confirm('سيتم مسح جميع الحالات والملاحظات. هل تريد المتابعة؟')) return;
   localStorage.removeItem(STORAGE_KEY);
   localStorage.removeItem(NOTES_KEY);
+  localStorage.removeItem(MSG_KEY);
   render();
 }
 
